@@ -75,7 +75,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Already have an account ?"
-            android:textSize="19sp"
+            android:textSize="20sp"
             android:textColor="@color/colorAccent"
             android:textStyle="bold"
             android:gravity="center"

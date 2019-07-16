@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,7 +38,7 @@ public class PhoneActivity extends AppCompatActivity {
     private PhoneAuthProvider.ForceResendingToken mResendToken;
 
     private FirebaseAuth mAuth;
-
+    private TextView loginWithMail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class PhoneActivity extends AppCompatActivity {
         sendVerificationCodeButton=findViewById(R.id.getVerificationCodeButton);
         verifyButton=findViewById(R.id.getVerifiedButton);
         loadingBar=new ProgressDialog(this);
-
+        loginWithMail=findViewById(R.id.loginWithEmail);
         mAuth=FirebaseAuth.getInstance();
 
 
@@ -131,6 +132,14 @@ public class PhoneActivity extends AppCompatActivity {
             }
         });
 
+        loginWithMail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendUserToLoginActivity();
+            }
+        });
+
+
     }
 
 
@@ -157,6 +166,12 @@ public class PhoneActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void sendUserToLoginActivity() {
+        Intent intent=new Intent(PhoneActivity.this,LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
 }

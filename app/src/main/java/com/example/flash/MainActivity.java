@@ -2,6 +2,7 @@ package com.example.flash;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -130,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
         }
         if(item.getItemId()== R.id.main_about_option){
             //send user to my website
+            Intent intent=new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://gyaneswarsingh.000webhostapp.com/"));
+            startActivity(intent);
         }
         if(item.getItemId()== R.id.main_group_option){
             requestNewGroup();
