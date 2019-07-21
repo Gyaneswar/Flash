@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -54,6 +55,8 @@ public class settingsActivity extends AppCompatActivity {
     private StorageReference userProfileImageReference;
     private ProgressDialog loadingBar;
 
+    private Toolbar settings_Toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,12 +102,12 @@ public class settingsActivity extends AppCompatActivity {
         else if(TextUtils.isEmpty(setStatus)){
             Toast.makeText(this,"please write your status",Toast.LENGTH_SHORT).show();
         }else{
-            HashMap<String,String> profileMap=new HashMap<>();
+            HashMap<String,Object> profileMap=new HashMap<>();
             profileMap.put("uid",currentUserId);
             profileMap.put("name",setUserName);
             profileMap.put("status",setStatus);
 
-            rootRef.child("Users").child(currentUserId).setValue(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            rootRef.child("Users").child(currentUserId).updateChildren(profileMap).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
@@ -118,6 +121,12 @@ public class settingsActivity extends AppCompatActivity {
         }
     }
 
+
+    private void sendUserToMainActivity() {
+        Intent intent=new Intent(settingsActivity.this,MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
 
 
     public void retrieveUserInfo(){
@@ -158,17 +167,16 @@ public class settingsActivity extends AppCompatActivity {
         userName=findViewById(R.id.setUserName);
         userStatus=findViewById(R.id.setProfileStatus);
         userProfileImage=findViewById(R.id.setProfileImage);
-
+        settings_Toolbar=findViewById(R.id.settingsToolbar);
         loadingBar=new ProgressDialog(this);
 
+        setSupportActionBar(settings_Toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Account Settings");
 
 
-    }
 
-    private void sendUserToMainActivity() {
-        Intent intent=new Intent(settingsActivity.this,MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
     }
 
     @Override

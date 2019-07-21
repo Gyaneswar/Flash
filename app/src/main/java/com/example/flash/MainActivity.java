@@ -107,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    private void sendUserToFindFriendsActivity() {
+        Intent intent=new Intent(MainActivity.this,FIndFriendsActivity.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -127,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             sendUserToSettingsActivity();
         }
         if(item.getItemId()== R.id.main_find_friends){
-
+            sendUserToFindFriendsActivity();
         }
         if(item.getItemId()== R.id.main_about_option){
             //send user to my website

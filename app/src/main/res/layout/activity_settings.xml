@@ -6,13 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".settingsActivity">
 
+    <include
+        layout="@layout/app_bar_layout"
+        android:id="@+id/settingsToolbar"
+        ></include>
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/setProfileImage"
         android:layout_width="260dp"
         android:layout_height="260dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="90dp"
         android:src="@drawable/profile_image"
         app:civ_border_width="4dp"
         app:civ_border_color="@color/colorPrimary"/>
@@ -52,21 +57,21 @@
         />
 
     <TextView
-        android:id="@+id/updateSettingsButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/setProfileStatus"
-        android:hint="UPDATE"
-        android:drawableLeft="@drawable/edit_status"
-        android:textColor="@color/colorPrimaryDark"
-        android:textStyle="bold"
-        android:textColorHint="@color/colorAccent"
-        android:background="@color/colorPrimary"
-        android:textSize="20dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:padding="6dp"
-        android:gravity="center"
-        />
+    android:id="@+id/updateSettingsButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/setProfileStatus"
+    android:hint="UPDATE"
+    android:drawableLeft="@drawable/edit_status"
+    android:textColor="@color/colorPrimaryDark"
+    android:textStyle="bold"
+    android:textColorHint="@color/colorAccent"
+    android:background="@color/colorPrimary"
+    android:textSize="20dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:padding="6dp"
+    android:gravity="center"
+    />
 </RelativeLayout>
